@@ -1,0 +1,12 @@
+# import ApiError from '../ApiError/ApiError.graphql'
+# import DateTime from '../../scalars//DateTime/DateTime.graphql'
+
+type Movie {
+    title: String
+    year: Int
+    Rating: Float
+}
+
+type Query {
+    movies: [Movie]
+}
