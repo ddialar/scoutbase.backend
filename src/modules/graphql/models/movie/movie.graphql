@@ -1,10 +1,11 @@
 # import ApiError from '../ApiError/ApiError.graphql'
-# import DateTime from '../../scalars//DateTime/DateTime.graphql'
+# import Actor from '../actor/actor.graphql'
 
 type Movie {
     title: String
     year: Int
     rating: Float
+    actors: [Actor]
 }
 
 type Query {

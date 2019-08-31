@@ -5,5 +5,6 @@ const Query = {
 };
 
 export default {
-    Query
+    Query,
+    Movie: MovieResolvers.Movie
 };

@@ -1,0 +1,7 @@
+# import ApiError from '../ApiError/ApiError.graphql'
+
+type Actor {
+    name: String
+    birthday: String
+    country: String
+}

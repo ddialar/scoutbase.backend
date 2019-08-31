@@ -1,19 +1,23 @@
-import actors             from '@database/data/actors';
-import { actorsRequests } from '@database/orm';
+import * as dotenv            from 'dotenv';
+import * as path              from 'path';
+dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 
-describe('Testing ORM ...', () => {
-    describe('working with \'getActorsByMovieId\' ...', () => {
+import movies                 from '@database/data/movies';
+import { getActorsByMovieId } from '@ports';
+
+describe('Testing Movie adapters ...', () => {
+    describe('working with \'getMovies\' ...', () => {
         test('with no movie ID provided, it must return an empty collection.', () => {
             let movieId = null;
             let expectedResult = [];
-            let obtainedResult = actorsRequests.getActorsByMovieId(movieId);
+            let obtainedResult = getActorsByMovieId(movieId);
 
             expect(obtainedResult).toHaveLength(expectedResult.length);
         });
         test('providing a non recorded movie ID, it must return an empty collection.', () => {
             let movieId = 99;
             let expectedResult = [];
-            let obtainedResult = actorsRequests.getActorsByMovieId(movieId);
+            let obtainedResult = getActorsByMovieId(movieId);
 
             expect(obtainedResult).toHaveLength(expectedResult.length);
         });
@@ -51,7 +55,7 @@ describe('Testing ORM ...', () => {
                   "country": "United Kingdom"
                 }
             ];
-            let obtainedResult = actorsRequests.getActorsByMovieId(movieId);
+            let obtainedResult = getActorsByMovieId(movieId);
             
             expect(obtainedResult).not.toBeNull();
             expect(obtainedResult).toHaveLength(expectedResult.length)
