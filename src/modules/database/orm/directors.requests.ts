@@ -1,7 +1,6 @@
 import { DirectorInterface } from '@interfaces';
 
 import directors             from '@database/data/directors';
-import actors                from '@database/data/actors';
 import relationships         from '@database/data/relationships';
 
 interface DirectorMovieInterface {
