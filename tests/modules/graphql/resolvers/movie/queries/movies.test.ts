@@ -100,7 +100,7 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                     done();
                 });
             })
-            describe('requesting only the movie\'s data and its actors ...', () => {
+            describe('requesting the movie\'s data and their actors ...', () => {
                 const query = `
                     query {
                         movies {
@@ -339,7 +339,7 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                     done();
                 });
             })
-            describe('requesting only the movie\'s data and its directors ...', () => {
+            describe('requesting the movie\'s data and their directors ...', () => {
                 const query = `
                     query {
                         movies {
@@ -357,83 +357,83 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                 test('with no movie IDs provided, it must return all movies.', async (done) => {
                     let expectedResult = [
                         {
-                          "title": "The Imitation Game",
-                          "year": 2014,
-                          "rating": 5,
-                          "directors": [
-                            {
-                              "name": "Morten Tyldum",
-                              "birthday": "1967-05-19",
-                              "country": "Norway"
-                            }
-                          ]
+                            "title": "The Imitation Game",
+                            "year": 2014,
+                            "rating": 5,
+                            "directors": [
+                                {
+                                    "name": "Morten Tyldum",
+                                    "birthday": "1967-05-19",
+                                    "country": "Norway"
+                                }
+                            ]
                         },
                         {
-                          "title": "Doctor Strange",
-                          "year": 1982,
-                          "rating": 7.6,
-                          "directors": [
-                            {
-                              "name": "Scott Derrickson",
-                              "birthday": "1966-03-18",
-                              "country": "United States"
-                            }
-                          ]
+                            "title": "Doctor Strange",
+                            "year": 1982,
+                            "rating": 7.6,
+                            "directors": [
+                                {
+                                    "name": "Scott Derrickson",
+                                    "birthday": "1966-03-18",
+                                    "country": "United States"
+                                }
+                            ]
                         },
                         {
-                          "title": "Blade Runner",
-                          "year": 1982,
-                          "rating": 8.3,
-                          "directors": [
-                            {
-                              "name": "Ridley Scott",
-                              "birthday": "1937-11-30",
-                              "country": "United Kingdom"
-                            }
-                          ]
+                            "title": "Blade Runner",
+                            "year": 1982,
+                            "rating": 8.3,
+                            "directors": [
+                                {
+                                    "name": "Ridley Scott",
+                                    "birthday": "1937-11-30",
+                                    "country": "United Kingdom"
+                                }
+                            ]
                         },
                         {
-                          "title": "The Dark Knight",
-                          "year": 2008,
-                          "rating": 4.5,
-                          "directors": [
-                            {
-                              "name": "Christopher Nolan",
-                              "birthday": "1970-06-30",
-                              "country": "United Kingdom"
-                            }
-                          ]
+                            "title": "The Dark Knight",
+                            "year": 2008,
+                            "rating": 4.5,
+                            "directors": [
+                                {
+                                    "name": "Christopher Nolan",
+                                    "birthday": "1970-06-30",
+                                    "country": "United Kingdom"
+                                }
+                            ]
                         },
                         {
-                          "title": "Inception",
-                          "year": 2010,
-                          "rating": 4,
-                          "directors": [
-                            {
-                              "name": "Christopher Nolan",
-                              "birthday": "1970-06-30",
-                              "country": "United Kingdom"
-                            }
-                          ]
+                            "title": "Inception",
+                            "year": 2010,
+                            "rating": 4,
+                            "directors": [
+                                {
+                                    "name": "Christopher Nolan",
+                                    "birthday": "1970-06-30",
+                                    "country": "United Kingdom"
+                                }
+                            ]
                         },
                         {
-                          "title": "The Matrix",
-                          "year": 1999,
-                          "rating": 4,
-                          "directors": [
-                            {
-                              "name": "Lana Wachowski",
-                              "birthday": "1965-06-21",
-                              "country": "United States"
-                            },
-                            {
-                              "name": "Lilly Wachowski",
-                              "birthday": "1967-12-29",
-                              "country": "United States"
-                            }
-                          ]
+                            "title": "The Matrix",
+                            "year": 1999,
+                            "rating": 4,
+                            "directors": [
+                                {
+                                    "name": "Lana Wachowski",
+                                    "birthday": "1965-06-21",
+                                    "country": "United States"
+                                },
+                                {
+                                    "name": "Lilly Wachowski",
+                                    "birthday": "1967-12-29",
+                                    "country": "United States"
+                                }
+                            ]
                         }
-                      ];
+                    ];
                     let obtainedResult = await graphql(schema, query, parentValues, context, variables);
 
                     expect(obtainedResult).not.toBeNull();
@@ -446,7 +446,7 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                     obtainedResult.data.movies.map((obtainedMovie, movieIndex) => {
 
                         // console.log(JSON.stringify(obtainedMovie, null, 4));
-                        
+
 
                         expect(obtainedMovie).not.toHaveProperty('id');
                         expect(obtainedMovie).toHaveProperty('title');
@@ -466,6 +466,495 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                             expect(director.birthday).toBe(expectedResult[movieIndex].directors[directorIndex].birthday);
                             expect(director).toHaveProperty('country');
                             expect(director.country).toBe(expectedResult[movieIndex].directors[directorIndex].country);
+                        });
+                    });
+
+                    done();
+                });
+            })
+            describe('requesting the movie\'s data with their actors and the directors who have worked with these actors ...', () => {
+                const query = `
+                    query {
+                        movies {
+                            title
+                            year
+                            rating
+                            actors {
+                                name
+                                birthday
+                                country
+                                directors {
+                                    name
+                                    birthday
+                                    country
+                                }
+                            }
+                        }
+                    }
+                `;
+                test('with no movie IDs provided, it must return all movies.', async (done) => {
+                    let expectedResult = [
+                        {
+                            "title": "The Imitation Game",
+                            "year": 2014,
+                            "rating": 5,
+                            "actors": [
+                                {
+                                    "name": "Benedict Cumberbatch",
+                                    "birthday": "1976-06-19",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        },
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Keira Knightley",
+                                    "birthday": "1985-03-26",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Matthew Goode",
+                                    "birthday": "1978-04-03",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Rory Kinnear",
+                                    "birthday": "1976-02-17",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Allen Leech",
+                                    "birthday": "1981-05-18",
+                                    "country": "Ireland",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Doctor Strange",
+                            "year": 1982,
+                            "rating": 7.6,
+                            "actors": [
+                                {
+                                    "name": "Benedict Cumberbatch",
+                                    "birthday": "1976-06-19",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Morten Tyldum",
+                                            "birthday": "1967-05-19",
+                                            "country": "Norway"
+                                        },
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Chiwetel Ejiofor",
+                                    "birthday": "1977-07-10",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Rachel McAdams",
+                                    "birthday": "1978-11-17",
+                                    "country": "Canada",
+                                    "directors": [
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Benedict Wong",
+                                    "birthday": "1971-06-03",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Tilda Swinton",
+                                    "birthday": "1960-11-05",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Scott Derrickson",
+                                            "birthday": "1966-03-18",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Blade Runner",
+                            "year": 1982,
+                            "rating": 8.3,
+                            "actors": [
+                                {
+                                    "name": "Harrison Ford",
+                                    "birthday": "1942-06-13",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Ridley Scott",
+                                            "birthday": "1937-11-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Rutger Hauer",
+                                    "birthday": "1944-01-23",
+                                    "country": "Netherland",
+                                    "directors": [
+                                        {
+                                            "name": "Ridley Scott",
+                                            "birthday": "1937-11-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Sean Young",
+                                    "birthday": "1959-11-20",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Ridley Scott",
+                                            "birthday": "1937-11-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Edward James Olmos",
+                                    "birthday": "1947-02-24",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Ridley Scott",
+                                            "birthday": "1937-11-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Daryl Hannah",
+                                    "birthday": "1960-12-03",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Ridley Scott",
+                                            "birthday": "1937-11-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "The Dark Knight",
+                            "year": 2008,
+                            "rating": 4.5,
+                            "actors": [
+                                {
+                                    "name": "Christian Bale",
+                                    "birthday": "1974-01-30",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Michael Caine",
+                                    "birthday": "1933-03-14",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Aaron Eckhart",
+                                    "birthday": "1968-03-12",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Morgan Freeman",
+                                    "birthday": "1937-06-01",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Heath Ledger",
+                                    "birthday": "1978-04-04",
+                                    "country": "Australia",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Inception",
+                            "year": 2010,
+                            "rating": 4,
+                            "actors": [
+                                {
+                                    "name": "Leonardo DiCaprio",
+                                    "birthday": "1974-11-11",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Joseph Gordon-Levitt",
+                                    "birthday": "1981-02-17",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Ellen Page",
+                                    "birthday": "1987-02-21",
+                                    "country": "Canada",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Tom Hardy",
+                                    "birthday": "1977-09-15",
+                                    "country": "United Kingdom",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Marion Cotillard",
+                                    "birthday": "1975-09-30",
+                                    "country": "France",
+                                    "directors": [
+                                        {
+                                            "name": "Christopher Nolan",
+                                            "birthday": "1970-06-30",
+                                            "country": "United Kingdom"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "The Matrix",
+                            "year": 1999,
+                            "rating": 4,
+                            "actors": [
+                                {
+                                    "name": "Keanu Reeves",
+                                    "birthday": "1964-09-02",
+                                    "country": "Lebanon",
+                                    "directors": [
+                                        {
+                                            "name": "Lana Wachowski",
+                                            "birthday": "1965-06-21",
+                                            "country": "United States"
+                                        },
+                                        {
+                                            "name": "Lilly Wachowski",
+                                            "birthday": "1967-12-29",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Laurence Fishburne",
+                                    "birthday": "1961-07-30",
+                                    "country": "USA",
+                                    "directors": [
+                                        {
+                                            "name": "Lana Wachowski",
+                                            "birthday": "1965-06-21",
+                                            "country": "United States"
+                                        },
+                                        {
+                                            "name": "Lilly Wachowski",
+                                            "birthday": "1967-12-29",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Carrie-Anne Moss",
+                                    "birthday": "1967-08-21",
+                                    "country": "Canada",
+                                    "directors": [
+                                        {
+                                            "name": "Lana Wachowski",
+                                            "birthday": "1965-06-21",
+                                            "country": "United States"
+                                        },
+                                        {
+                                            "name": "Lilly Wachowski",
+                                            "birthday": "1967-12-29",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Hugo Weaving",
+                                    "birthday": "1960-04-04",
+                                    "country": "Nigeria",
+                                    "directors": [
+                                        {
+                                            "name": "Lana Wachowski",
+                                            "birthday": "1965-06-21",
+                                            "country": "United States"
+                                        },
+                                        {
+                                            "name": "Lilly Wachowski",
+                                            "birthday": "1967-12-29",
+                                            "country": "United States"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ];
+                    let obtainedResult = await graphql(schema, query, parentValues, context, variables);
+
+                    expect(obtainedResult).not.toBeNull();
+                    expect(obtainedResult).toHaveProperty('data');
+                    expect(obtainedResult.data).not.toBeNull();
+                    expect(obtainedResult.data).toHaveProperty('movies');
+                    expect(obtainedResult.data.movies).not.toBeNull();
+                    expect(obtainedResult.data.movies).toHaveLength(expectedResult.length);
+
+                    obtainedResult.data.movies.map((obtainedMovie, movieIndex) => {
+                        expect(obtainedMovie).not.toHaveProperty('id');
+                        expect(obtainedMovie).toHaveProperty('title');
+                        expect(obtainedMovie.title).toBe(expectedResult[movieIndex].title);
+                        expect(obtainedMovie).toHaveProperty('year');
+                        expect(obtainedMovie.year).toBe(expectedResult[movieIndex].year);
+                        expect(obtainedMovie).toHaveProperty('rating');
+                        expect(obtainedMovie.rating).toBe(expectedResult[movieIndex].rating);
+                        expect(obtainedMovie).toHaveProperty('actors');
+                        expect(obtainedMovie.actors).toHaveLength(expectedResult[movieIndex].actors.length);
+
+                        obtainedMovie.actors.map((actor, actorIndex) => {
+                            expect(actor).not.toHaveProperty('id');
+                            expect(actor).toHaveProperty('name');
+                            expect(actor.name).toBe(expectedResult[movieIndex].actors[actorIndex].name);
+                            expect(actor).toHaveProperty('birthday');
+                            expect(actor.birthday).toBe(expectedResult[movieIndex].actors[actorIndex].birthday);
+                            expect(actor).toHaveProperty('country');
+                            expect(actor.country).toBe(expectedResult[movieIndex].actors[actorIndex].country);
+                            expect(actor).toHaveProperty('directors');
+                            expect(actor.directors).toHaveLength(expectedResult[movieIndex].actors[actorIndex].directors.length);
+
+                            actor.directors.map((director, directorIndex) => {
+                                expect(director).not.toHaveProperty('id');
+                                expect(director).toHaveProperty('name');
+                                expect(director.name).toBe(expectedResult[movieIndex].actors[actorIndex].directors[directorIndex].name);
+                                expect(director).toHaveProperty('birthday');
+                                expect(director.birthday).toBe(expectedResult[movieIndex].actors[actorIndex].directors[directorIndex].birthday);
+                                expect(director).toHaveProperty('country');
+                                expect(director.country).toBe(expectedResult[movieIndex].actors[actorIndex].directors[directorIndex].country);
+                            });
                         });
                     });
 

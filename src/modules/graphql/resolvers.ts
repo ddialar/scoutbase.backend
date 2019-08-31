@@ -1,4 +1,5 @@
 import MovieResolvers from './models/movie/movie.resolvers';
+import ActorResolvers from './models/actor/actor.resolvers';
 
 const Query = {
     ...MovieResolvers.Query
@@ -6,5 +7,6 @@ const Query = {
 
 export default {
     Query,
-    Movie: MovieResolvers.Movie
+    Movie: MovieResolvers.Movie,
+    Actor: ActorResolvers.Actor
 };

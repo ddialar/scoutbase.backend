@@ -3,41 +3,41 @@ import * as path                 from 'path';
 dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 
 import movies                    from '@database/data/movies';
-import { getDirectorsByMovieId } from '@ports';
+import { getDirectorsByActorId } from '@ports';
 
 describe('Testing Director adapters ...', () => {
-    describe('working with \'getDirectorsByMovieId\' ...', () => {
-        test('with no movie ID provided, it must return an empty collection.', () => {
-            let movieId = null;
+    describe('working with \'getDirectorsByActorId\' ...', () => {
+        test('with no actor ID provided, it must return an empty collection.', () => {
+            let actorId = null;
             let expectedResult = [];
-            let obtainedResult = getDirectorsByMovieId(movieId);
+            let obtainedResult = getDirectorsByActorId(actorId);
 
             expect(obtainedResult).toHaveLength(expectedResult.length);
         });
-        test('providing a non recorded movie ID, it must return an empty collection.', () => {
-            let movieId = 99;
+        test('providing a non recorded actor ID, it must return an empty collection.', () => {
+            let actorId = 99;
             let expectedResult = [];
-            let obtainedResult = getDirectorsByMovieId(movieId);
+            let obtainedResult = getDirectorsByActorId(actorId);
 
             expect(obtainedResult).toHaveLength(expectedResult.length);
         });
-        test('providing a movie ID, it must return all directors bound with this movie.', () => {
-            let movieId = 6;
+        test('providing a actor ID, it must return all directors bound with this actor.', () => {
+            let actorId = 1;
             let expectedResult = [
                 {
-                    "id": 5,
-                    "name": "Lana Wachowski",
-                    "birthday": "1965-06-21",
-                    "country": "United States"
+                    "id": 1,
+                    "name": "Morten Tyldum",
+                    "birthday": "1967-05-19",
+                    "country": "Norway"
                 },
                 {
-                    "id": 6,
-                    "name": "Lilly Wachowski",
-                    "birthday": "1967-12-29",
+                    "id": 2,
+                    "name": "Scott Derrickson",
+                    "birthday": "1966-03-18",
                     "country": "United States"
                 }
             ];
-            let obtainedResult = getDirectorsByMovieId(movieId);
+            let obtainedResult = getDirectorsByActorId(actorId);
 
             expect(obtainedResult).not.toBeNull();
             expect(obtainedResult).toHaveLength(expectedResult.length)

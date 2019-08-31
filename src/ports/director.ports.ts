@@ -11,6 +11,12 @@ const getDirectorsByMovieId = (movieId: number): DirectorInterface[] => {
     return adapters.getDirectorsByMovieId(movieId);
 };
 
+const getDirectorsByActorId = (actorId: number): DirectorInterface[] => {
+    logger.trace(`(ports) - Retreaving directors for the actor with ID: ${actorId}.`);
+    return adapters.getDirectorsByActorId(actorId);
+};
+
 export {
-    getDirectorsByMovieId
+    getDirectorsByMovieId,
+    getDirectorsByActorId
 }
