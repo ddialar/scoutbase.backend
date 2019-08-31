@@ -1,11 +1,13 @@
 # import ApiError from '../ApiError/ApiError.graphql'
-# import Actor from '../actor/actor.graphql'
+# import Actor    from '../actor/actor.graphql'
+# import Director from '../director/director.graphql'
 
 type Movie {
     title: String
     year: Int
     rating: Float
     actors: [Actor]
+    directors: [Director]
 }
 
 type Query {

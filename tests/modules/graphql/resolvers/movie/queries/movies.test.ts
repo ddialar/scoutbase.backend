@@ -339,6 +339,139 @@ describe('Testing GraphQL Movie resolvers ...', () => {
                     done();
                 });
             })
+            describe('requesting only the movie\'s data and its directors ...', () => {
+                const query = `
+                    query {
+                        movies {
+                            title
+                            year
+                            rating
+                            directors {
+                                name
+                                birthday
+                                country
+                            }
+                        }
+                    }
+                `;
+                test('with no movie IDs provided, it must return all movies.', async (done) => {
+                    let expectedResult = [
+                        {
+                          "title": "The Imitation Game",
+                          "year": 2014,
+                          "rating": 5,
+                          "directors": [
+                            {
+                              "name": "Morten Tyldum",
+                              "birthday": "1967-05-19",
+                              "country": "Norway"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Doctor Strange",
+                          "year": 1982,
+                          "rating": 7.6,
+                          "directors": [
+                            {
+                              "name": "Scott Derrickson",
+                              "birthday": "1966-03-18",
+                              "country": "United States"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Blade Runner",
+                          "year": 1982,
+                          "rating": 8.3,
+                          "directors": [
+                            {
+                              "name": "Ridley Scott",
+                              "birthday": "1937-11-30",
+                              "country": "United Kingdom"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "The Dark Knight",
+                          "year": 2008,
+                          "rating": 4.5,
+                          "directors": [
+                            {
+                              "name": "Christopher Nolan",
+                              "birthday": "1970-06-30",
+                              "country": "United Kingdom"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "Inception",
+                          "year": 2010,
+                          "rating": 4,
+                          "directors": [
+                            {
+                              "name": "Christopher Nolan",
+                              "birthday": "1970-06-30",
+                              "country": "United Kingdom"
+                            }
+                          ]
+                        },
+                        {
+                          "title": "The Matrix",
+                          "year": 1999,
+                          "rating": 4,
+                          "directors": [
+                            {
+                              "name": "Lana Wachowski",
+                              "birthday": "1965-06-21",
+                              "country": "United States"
+                            },
+                            {
+                              "name": "Lilly Wachowski",
+                              "birthday": "1967-12-29",
+                              "country": "United States"
+                            }
+                          ]
+                        }
+                      ];
+                    let obtainedResult = await graphql(schema, query, parentValues, context, variables);
+
+                    expect(obtainedResult).not.toBeNull();
+                    expect(obtainedResult).toHaveProperty('data');
+                    expect(obtainedResult.data).not.toBeNull();
+                    expect(obtainedResult.data).toHaveProperty('movies');
+                    expect(obtainedResult.data.movies).not.toBeNull();
+                    expect(obtainedResult.data.movies).toHaveLength(expectedResult.length);
+
+                    obtainedResult.data.movies.map((obtainedMovie, movieIndex) => {
+
+                        // console.log(JSON.stringify(obtainedMovie, null, 4));
+                        
+
+                        expect(obtainedMovie).not.toHaveProperty('id');
+                        expect(obtainedMovie).toHaveProperty('title');
+                        expect(obtainedMovie.title).toBe(expectedResult[movieIndex].title);
+                        expect(obtainedMovie).toHaveProperty('year');
+                        expect(obtainedMovie.year).toBe(expectedResult[movieIndex].year);
+                        expect(obtainedMovie).toHaveProperty('rating');
+                        expect(obtainedMovie.rating).toBe(expectedResult[movieIndex].rating);
+                        expect(obtainedMovie).toHaveProperty('directors');
+                        expect(obtainedMovie.directors).toHaveLength(expectedResult[movieIndex].directors.length);
+
+                        obtainedMovie.directors.map((director, directorIndex) => {
+                            expect(director).not.toHaveProperty('id');
+                            expect(director).toHaveProperty('name');
+                            expect(director.name).toBe(expectedResult[movieIndex].directors[directorIndex].name);
+                            expect(director).toHaveProperty('birthday');
+                            expect(director.birthday).toBe(expectedResult[movieIndex].directors[directorIndex].birthday);
+                            expect(director).toHaveProperty('country');
+                            expect(director.country).toBe(expectedResult[movieIndex].directors[directorIndex].country);
+                        });
+                    });
+
+                    done();
+                });
+            })
         });
     });
 });

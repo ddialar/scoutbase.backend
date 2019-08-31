@@ -8,6 +8,9 @@ export default {
     Movie: {
         actors: (parentValue: any, args: any, context: any, astData: any): ActorInterface[] => {
             return ports.getActorsByMovieId(parentValue.id);
+        },
+        directors: (parentValue: any, args: any, context: any, astData: any): ActorInterface[] => {
+            return ports.getDirectorsByMovieId(parentValue.id);
         }
     },
     Query: {

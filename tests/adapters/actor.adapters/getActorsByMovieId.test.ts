@@ -1,7 +1,7 @@
 import movies                 from '@database/data/movies';
 import { getActorsByMovieId } from '@adapters';
 
-describe('Testing Movie adapters ...', () => {
+describe('Testing Actor adapters ...', () => {
     describe('working with \'getActorsByMovieId\' ...', () => {
         test('with no movie ID provided, it must return an empty collection.', () => {
             let movieId = null;
