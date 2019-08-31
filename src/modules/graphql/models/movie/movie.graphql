@@ -4,7 +4,7 @@
 type Movie {
     title: String
     year: Int
-    Rating: Float
+    rating: Float
 }
 
 type Query {
