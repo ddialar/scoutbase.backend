@@ -65,9 +65,6 @@
       "<rootDir>/dist/*",
       "<rootDir>/logs/*"
     ],
-    "setupFiles": [
-      "./config/.env/test.env"
-    ],
     "modulePaths": [
       "src"
     ],
@@ -76,9 +73,12 @@
       "js"
     ],
     "moduleNameMapper": {
+      "@ports(.*)$":      "<rootDir>/src/ports$1",
+      "@adapters(.*)$":   "<rootDir>/src/adapters$1",
       "@interfaces(.*)$": "<rootDir>/src/core/interfaces$1",
-      "@services(.*)$": "<rootDir>/src/core/services$1",
-      "@database(.*)$": "<rootDir>/src/modules/database$1"
+      "@logger":          "<rootDir>/src/core/common/logger",
+      "@graphql(.*)$":    "<rootDir>/src/modules/graphql$1",
+      "@database(.*)$":   "<rootDir>/src/modules/database$1"
     },
     "verbose": false,
     "testURL": "http://localhost",
