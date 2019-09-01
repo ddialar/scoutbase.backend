@@ -77,27 +77,14 @@ const getUserByUsername = (username: string): UserInterface | null => {
 // // ##########           UPDATING OPERATIONS             ##########
 // // ###############################################################
 
-// const updateUserToken = async (userId: string, newToken: string): Promise<User | ApiError> => {
-//     try {
-//         let obtainedUser = await dbRequests.updateUserToken(userId, newToken);
-//         return (obtainedUser) ? 
-//             plainToClass(User, parseUserFromDatabase(obtainedUser)) : 
-//             new UserDoesNotExistError();
-//     } catch (error) {
-//         return new UserBadRequestError(error.message);
-//     }
-// };
-
-// const updateUserLoginData = async (userId: string, newToken: string): Promise<User | ApiError> => {
-//     try {
-//         let obtainedUser = await dbRequests.updateUserLoginData(userId, newToken);
-//         return (obtainedUser) ? 
-//             plainToClass(User, parseUserFromDatabase(obtainedUser)) : 
-//             new UserDoesNotExistError();
-//     } catch (error) {
-//         return new UserBadRequestError(error.message);
-//     }
-// };
+const updateUserToken = (userId: number, newToken: string): UserInterface | null => {
+    try {
+        return usersRequests.updateUserToken(userId, newToken);
+    } catch (error) {
+        // return new UserBadRequestError(error.message);
+        throw error;
+    }
+};
 
 export {
     // createNewUser,
@@ -105,6 +92,5 @@ export {
     getUserByUsername,
     // getUserByToken,
     // checkIfUserExists,
-    // updateUserToken,
-    // updateUserLoginData
+    updateUserToken
 }
