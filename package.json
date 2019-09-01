@@ -24,6 +24,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/graphql": "^14.5.0",
     "@types/jest": "^24.0.18",
+    "@types/jsonwebtoken": "^8.3.3",
     "@types/node": "^12.7.3",
     "@types/webpack-env": "^1.14.0",
     "class-transformer": "^0.2.3",
@@ -47,7 +48,7 @@
     "bcryptjs": "^2.4.3",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.5",
-    "jwt-simple": "^0.5.6",
+    "jsonwebtoken": "^8.5.1",
     "log4js": "^4.5.1"
   },
   "jest": {
@@ -73,13 +74,13 @@
       "js"
     ],
     "moduleNameMapper": {
-      "@ports(.*)$":      "<rootDir>/src/ports$1",
-      "@adapters(.*)$":   "<rootDir>/src/adapters$1",
+      "@ports(.*)$": "<rootDir>/src/ports$1",
+      "@adapters(.*)$": "<rootDir>/src/adapters$1",
       "@interfaces(.*)$": "<rootDir>/src/core/interfaces$1",
-      "@services(.*)$":   "<rootDir>/src/core/services$1",
-      "@logger":          "<rootDir>/src/core/common/logger",
-      "@graphql(.*)$":    "<rootDir>/src/modules/graphql$1",
-      "@database(.*)$":   "<rootDir>/src/modules/database$1"
+      "@services(.*)$": "<rootDir>/src/core/services$1",
+      "@logger": "<rootDir>/src/core/common/logger",
+      "@graphql(.*)$": "<rootDir>/src/modules/graphql$1",
+      "@database(.*)$": "<rootDir>/src/modules/database$1"
     },
     "verbose": false,
     "testURL": "http://localhost",
