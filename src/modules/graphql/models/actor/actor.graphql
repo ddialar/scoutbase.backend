@@ -1,4 +1,3 @@
-# import ApiError from '../ApiError/ApiError.graphql'
 # import Director from '../director/director.graphql'
 
 type Actor {

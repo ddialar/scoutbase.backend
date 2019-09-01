@@ -1,4 +1,4 @@
 
 # import Mutation.*, *          from './models/authentication/authentication.graphql'
-## import Mutation.*, *          from './models/user/user.graphql'
+# import Mutation.*, *          from './models/user/user.graphql'
 # import Query.*, Mutation.*, * from './models/movie/movie.graphql'

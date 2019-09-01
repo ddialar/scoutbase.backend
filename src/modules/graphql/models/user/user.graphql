@@ -1,3 +1,9 @@
+input UserInput {
+    name: String!
+    username: String!
+    password: String!
+}
+
 type User {
     id: Int
     name: String
@@ -8,9 +14,6 @@ type AuthenticatedUser {
     user: User
 }
 
-# type Mutation {
-    # login(data: LoginInputType!): AuthenticatedUserUnion!
-    # login(data: LoginInputType!): AuthenticatedUser!
-    # login(username: String, password: String): AuthenticatedUser!
-    # logout: SimpleResponseUnion!
-# }
+type Mutation {
+    createUser(data: UserInput!): AuthenticatedUser!
+}

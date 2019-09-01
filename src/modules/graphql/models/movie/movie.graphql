@@ -1,5 +1,4 @@
 # import @isAuthenticatedUser from '../../directives/isAuthenticatedUser/isAuthenticatedUser.graphql'
-# import ApiError             from '../ApiError/ApiError.graphql'
 # import Actor                from '../actor/actor.graphql'
 # import Director             from '../director/director.graphql'
 
@@ -10,7 +9,6 @@ type Movie {
     actors: [Actor]
     directors: [Director]
     scoutbase_rating: String @isAuthenticatedUser
-    # scoutbase_rating: String
 }
 
 type Query {

@@ -1,5 +1,3 @@
-# import ApiError from '../ApiError/ApiError.graphql'
-
 type Director {
     name: String
     birthday: String

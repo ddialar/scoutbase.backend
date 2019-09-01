@@ -1,6 +1,2 @@
-export default interface ActorInterface {
-    id: number,
-    name: string,
-    birthday: string,
-    country: string
-}
+import PersonInterface from "./Person.interface";
+export default interface ActorInterface extends PersonInterface {}

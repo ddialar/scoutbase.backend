@@ -1,4 +1,5 @@
 import {
+    NewUserInterface,
     UserInterface,
     AuthenticatedUserInterface
 } from './User.interface';
@@ -7,6 +8,7 @@ import ActorInterface    from './Actor.interface';
 import DirectorInterface from './Director.interface';
 
 export {
+    NewUserInterface,
     UserInterface,
     AuthenticatedUserInterface,
     MovieInterface,
