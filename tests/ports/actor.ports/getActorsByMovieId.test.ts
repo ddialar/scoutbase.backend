@@ -5,7 +5,7 @@ dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 import movies                 from '@database/data/movies';
 import { getActorsByMovieId } from '@ports';
 
-describe('Testing Actor adapters ...', () => {
+describe('Testing Actor ports ...', () => {
     describe('working with \'getMovies\' ...', () => {
         test('with no movie ID provided, it must return an empty collection.', () => {
             let movieId = null;

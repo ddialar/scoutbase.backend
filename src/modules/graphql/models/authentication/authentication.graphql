@@ -1,0 +1,21 @@
+# import ApiError from '../ApiError/ApiError.graphql'
+## import User, AuthenticatedUser from '../user/user.graphql'
+# import AuthenticatedUser from '../user/user.graphql'
+
+# input LoginInputType {
+#     username: String!
+#     password: String!
+# }
+
+# union AuthenticatedUserUnion = AuthenticatedUser | ApiError
+
+# type Query {
+#     authenticationNonImplementedQuery: Boolean
+# }
+
+type Mutation {
+    # login(data: LoginInputType!): AuthenticatedUserUnion!
+    # login(data: LoginInputType!): AuthenticatedUser!
+    login(username: String, password: String): AuthenticatedUser!
+    # logout: SimpleResponseUnion!
+}

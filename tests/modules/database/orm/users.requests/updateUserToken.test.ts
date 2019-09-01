@@ -1,15 +1,5 @@
+import users             from '@database/data/users';
 import { usersRequests } from '@database/orm';
-
-const mockedUsers = [
-    {
-        "id": 1,
-        "name": "John",
-        "surname": "Doe",
-        "username": "jdoe",
-        "password": "123456",
-        "token": ""
-    }
-];
 
 describe('Testing ORM ...', () => {
     describe('working with \'updateUserToken\' ...', () => {

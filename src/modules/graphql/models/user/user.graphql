@@ -1,0 +1,16 @@
+type User {
+    id: Int
+    name: String
+}
+
+type AuthenticatedUser {
+    token: String
+    user: User
+}
+
+# type Mutation {
+    # login(data: LoginInputType!): AuthenticatedUserUnion!
+    # login(data: LoginInputType!): AuthenticatedUser!
+    # login(username: String, password: String): AuthenticatedUser!
+    # logout: SimpleResponseUnion!
+# }
