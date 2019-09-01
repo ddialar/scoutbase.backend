@@ -4,6 +4,7 @@ import * as path        from 'path';
 import { importSchema } from 'graphql-import';
 import { ApolloServer } from 'apollo-server';
 import resolvers        from '@resolvers';
+import schemaDirectives from '@directives';
 
 const schemaAbsolutePath: string = path.join(process.env.PWD!, 'src/modules/graphql/schema.graphql');
 const typeDefs = importSchema(schemaAbsolutePath);
@@ -11,6 +12,7 @@ const typeDefs = importSchema(schemaAbsolutePath);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    schemaDirectives,
     context: ({ req }) => ({
         token: req.headers.authorization
     }),

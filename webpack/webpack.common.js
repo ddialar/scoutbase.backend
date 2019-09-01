@@ -30,7 +30,8 @@ module.exports = {
             '@apiErrors':  path.resolve(__dirname, '../src/core/models/ApiError'),
             '@entities':   path.resolve(__dirname, '../src/core/entities/'),
             '@database':   path.resolve(__dirname, '../src/modules/database/'),
-            '@resolvers':  path.resolve(__dirname, '../src/modules/graphql/resolvers')
+            '@resolvers':  path.resolve(__dirname, '../src/modules/graphql/resolvers'),
+            '@directives': path.resolve(__dirname, '../src/modules/graphql/directives')
         }
     },
     target: 'node'

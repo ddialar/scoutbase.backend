@@ -23,6 +23,7 @@
       "@entities*":  ["./src/core/entities*"],
       "@interfaces": ["./src/core/interfaces"],
       "@resolvers":  ["./src/modules/graphql/resolvers"],
+      "@directives": ["./src/modules/graphql/directives"],
       "@database*":  ["./src/modules/database*"],
       "@apiErrors":  ["./src/core/entities/ApiError"]
     },
