@@ -1,6 +1,7 @@
 node_modules
 dist
 logs
+docker/data/
 
 .DS_Store
 package-lock.json

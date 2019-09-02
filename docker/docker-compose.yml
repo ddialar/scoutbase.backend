@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  mariadb:
+    image: mysql:5.7
+    container_name: scoutbase
+    environment:
+      - MYSQL_DATABASE=scoutbase
+      - MYSQL_USER=scoutbase
+      - MYSQL_PASSWORD=scoutbase
+      - MYSQL_ROOT_PASSWORD=root
+    ports: 
+      - 3306:3306
+    volumes: 
+      - ./data/db:/var/lib/mysql
+      # - ./configure-database:/docker-entrypoint-initdb.d:rw
