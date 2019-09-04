@@ -1,14 +1,15 @@
-import { getManager } from 'typeorm';
+import logger         from '@logger';
+
+import { getManager, getConnection } from 'typeorm';
 import { movies }     from '../models/entities/movies';
 
-// const moviesRepository = getManager().getRepository(movies);
-
-const getAllMovies = async () => {
+const getAllMovies = async (): Promise<movies[]> => {
     try {
-        return await getManager().getRepository(movies).find();
+        let obtainedMovies = await getManager().getRepository(movies).find();
+        return obtainedMovies || [];
     } catch (error) {
-        console.log(error.message);
-        return null;
+        logger.error('(orm) - (getAllMovies) -', error.message);
+        return [];
     }
 };
 
