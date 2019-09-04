@@ -6,7 +6,7 @@ import { ApolloServer } from 'apollo-server';
 import resolvers        from '@resolvers';
 import schemaDirectives from '@directives';
 
-import orm              from '@orm';
+// import orm              from '@orm';
 
 const schemaAbsolutePath: string = path.join(process.env.PWD!, 'src/modules/graphql/schema.graphql');
 const typeDefs = importSchema(schemaAbsolutePath);
@@ -25,7 +25,7 @@ const server = new ApolloServer({
 const main = async () => {
     // TODO: Connect the ORM.
     try {
-        await orm.connect();
+        // await orm.connect();
         server
             .listen({ port: process.env.GRAPHQL_SERVER_PORT })
             .then(({ url }) => logger.info(`(server) - Server ready at ${url}`));

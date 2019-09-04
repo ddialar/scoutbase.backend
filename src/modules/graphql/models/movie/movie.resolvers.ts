@@ -17,8 +17,8 @@ export default {
         }
     },
     Query: {
-        movies: (parentValue: any, args: any, context: any, astData: any): MovieInterface[] => {
-            return ports.getMovies(args.movieIds || []);
+        movies: async (parentValue: any, args: any, context: any, astData: any): Promise<MovieInterface[]> => {
+            return await ports.getMovies(args.movieIds || []);
         }
     }
 };

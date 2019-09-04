@@ -4,14 +4,17 @@ import {
     ConnectionOptions,
     Connection
 } from 'typeorm';
+import { movies } from '../models/entities/movies';
 
 const connectionParams: ConnectionOptions = {
-    type: "mysql",
+    name: 'default',
+    type: 'mysql',
     database: process.env.ORM_DATABASE_NAME!,
     host: process.env.ORM_HOST!,
     port: parseInt(process.env.ORM_PORT!),
     username: process.env.ORM_USERNAME!,
-    password: process.env.ORM_PASSWORD!
+    password: process.env.ORM_PASSWORD!,
+    entities: [movies]
 };
 
 export const connect = async (): Promise<Connection> => {

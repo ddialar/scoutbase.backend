@@ -1,7 +1,9 @@
-import * as connection from './connection';
+import * as connection from './connection.services';
+import * as movies     from './movies.services';
 
 const orm = {
-    ...connection
+    ...connection,
+    ...movies
 }
 
 export default orm;

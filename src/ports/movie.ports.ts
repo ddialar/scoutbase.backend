@@ -6,9 +6,9 @@ import * as adapters      from '@adapters';
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getMovies = (movieIds: number[]): MovieInterface[] => {
+const getMovies = async (movieIds: number[]): Promise<MovieInterface[]> => {
     logger.trace('(ports) - Retreaving movies.');
-    return adapters.getMovies(movieIds);
+    return await adapters.getMovies(movieIds);
 };
 
 export {
