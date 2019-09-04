@@ -25,11 +25,13 @@
       "@resolvers":  ["./src/modules/graphql/resolvers"],
       "@directives": ["./src/modules/graphql/directives"],
       "@database*":  ["./src/modules/database*"],
+      "@orm":        ["./src/modules/typeorm/services"],
       "@apiErrors":  ["./src/core/entities/ApiError"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "sourceMap": true
   },
   "exclude": [
     "node_modules"
