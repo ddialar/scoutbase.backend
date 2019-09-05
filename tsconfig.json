@@ -25,7 +25,7 @@
       "@directives": ["./src/modules/graphql/directives"],
       "@database*":  ["./src/modules/database*"],
       "@orm":        ["./src/modules/typeorm/controllers"],
-      "@entities*":  ["./src/modules/typeorm/models/entities*"],
+      "@entities*":  ["./src/modules/typeorm/entities*"],
       "@apiErrors":  ["./src/core/entities/ApiError"]
     },
     "experimentalDecorators": true,

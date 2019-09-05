@@ -1,15 +1,10 @@
-import logger               from '@logger';
+import logger   from '@logger';
+import entities from '@entities/index';
 import {
     createConnection,
     ConnectionOptions,
     Connection
 } from 'typeorm';
-import { movies }           from '../models/entities/movies';
-import { directors }        from '../models/entities/directors';
-import { actors }           from '../models/entities/actors';
-import { movies_actors }    from '../models/entities/movies_actors';
-import { movies_directors } from '../models/entities/movies_directors';
-import { actors_directors } from '../models/entities/actors_directors';
 
 const connectionParams: ConnectionOptions = {
     name: 'default',
@@ -19,14 +14,7 @@ const connectionParams: ConnectionOptions = {
     port: parseInt(process.env.ORM_PORT!),
     username: process.env.ORM_USERNAME!,
     password: process.env.ORM_PASSWORD!,
-    entities: [
-        movies,
-        directors,
-        actors,
-        movies_actors,
-        movies_directors,
-        actors_directors
-    ]
+    entities
 };
 
 var connection: Connection;

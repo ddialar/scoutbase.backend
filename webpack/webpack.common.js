@@ -30,7 +30,7 @@ module.exports = {
             '@apiErrors':  path.resolve(__dirname, '../src/core/models/ApiError'),
             '@database':   path.resolve(__dirname, '../src/modules/database/'),
             '@orm':        path.resolve(__dirname, '../src/modules/typeorm/controllers'),
-            '@entities':   path.resolve(__dirname, '../src/modules/typeorm/models/entities'),
+            '@entities':   path.resolve(__dirname, '../src/modules/typeorm/entities'),
             '@resolvers':  path.resolve(__dirname, '../src/modules/graphql/resolvers'),
             '@directives': path.resolve(__dirname, '../src/modules/graphql/directives')
         }
