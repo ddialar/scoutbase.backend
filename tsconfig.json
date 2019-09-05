@@ -20,12 +20,12 @@
       "@ports*":     ["./src/ports"],
       "@adapters*":  ["./src/adapters"],
       "@services*":  ["./src/core/services*"],
-      "@entities*":  ["./src/core/entities*"],
       "@interfaces": ["./src/core/interfaces"],
       "@resolvers":  ["./src/modules/graphql/resolvers"],
       "@directives": ["./src/modules/graphql/directives"],
       "@database*":  ["./src/modules/database*"],
-      "@orm":        ["./src/modules/typeorm/services"],
+      "@orm":        ["./src/modules/typeorm/controllers"],
+      "@entities*":  ["./src/modules/typeorm/models/entities*"],
       "@apiErrors":  ["./src/core/entities/ApiError"]
     },
     "experimentalDecorators": true,
@@ -38,6 +38,6 @@
   ],
   "include": [
     "src/**/*.ts",
-    "src/**/*.js"
+    "src/**/*.js", "src/modules/typeorm/controllers/.services.ts"
   ]
 }

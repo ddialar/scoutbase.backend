@@ -1,7 +1,7 @@
 import logger         from '@logger';
 
-import { getManager, getConnection } from 'typeorm';
-import { movies }     from '../models/entities/movies';
+import { getManager } from 'typeorm';
+import { movies }     from '@entities/movies';
 
 const getAllMovies = async (): Promise<movies[]> => {
     try {

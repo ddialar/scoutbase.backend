@@ -28,9 +28,9 @@ module.exports = {
             '@services':   path.resolve(__dirname, '../src/core/services/'),
             '@interfaces': path.resolve(__dirname, '../src/core/interfaces/'),
             '@apiErrors':  path.resolve(__dirname, '../src/core/models/ApiError'),
-            '@entities':   path.resolve(__dirname, '../src/core/entities/'),
             '@database':   path.resolve(__dirname, '../src/modules/database/'),
-            '@orm':        path.resolve(__dirname, '../src/modules/typeorm/services'),
+            '@orm':        path.resolve(__dirname, '../src/modules/typeorm/controllers'),
+            '@entities':   path.resolve(__dirname, '../src/modules/typeorm/models/entities'),
             '@resolvers':  path.resolve(__dirname, '../src/modules/graphql/resolvers'),
             '@directives': path.resolve(__dirname, '../src/modules/graphql/directives')
         }
