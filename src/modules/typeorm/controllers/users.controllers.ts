@@ -7,6 +7,21 @@ import { users }         from '@entities/users';
 // ##########           CREATING OPERATIONS             ##########
 // ###############################################################
 
+const createUser = async (newUserData: NewUserInterface): Promise<users | null> => {
+    try {
+        let newUserId = await getManager()
+            .getRepository(users)
+            .insert(newUserData)
+            .then((result: InsertResult) => {
+                return result.identifiers[0].id;
+            });
+
+        return getUserById(newUserId);
+    } catch (error) {
+        logger.error('(orm) - (getUserByUsername) -', error.message);
+        throw error;
+    }
+};
 
 // ###############################################################
 // ##########            READING OPERATIONS             ##########
