@@ -7,7 +7,7 @@ export interface NewUserInterface {
 export interface UserInterface {
     id: number;
     name: string;
-    surname: string;
+    surname?: string;
     username: string;
     password: string;
     token: string;
