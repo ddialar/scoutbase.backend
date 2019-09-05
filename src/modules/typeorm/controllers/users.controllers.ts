@@ -44,12 +44,12 @@ const getUserByUsername = async (username: string): Promise<users | null> => {
     try {
         let obtainedUser = await getManager()
             .getRepository(users)
-            .findOneOrFail({ where: { username }});
+            .findOne({ where: { username }});
 
         return obtainedUser || null;
     } catch (error) {
         logger.error('(orm) - (getUserByUsername) -', error.message);
-        return null;
+        throw error;
     }
 };
 
