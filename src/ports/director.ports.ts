@@ -6,14 +6,14 @@ import * as adapters         from '@adapters';
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getDirectorsByMovieId = (movieId: number): DirectorInterface[] => {
+const getDirectorsByMovieId = async (movieId: number): Promise<DirectorInterface[]> => {
     logger.trace(`(ports) - Retreaving directors for the movie with ID: ${movieId}.`);
-    return adapters.getDirectorsByMovieId(movieId);
+    return await adapters.getDirectorsByMovieId(movieId);
 };
 
-const getDirectorsByActorId = (actorId: number): DirectorInterface[] => {
+const getDirectorsByActorId = async (actorId: number):Promise<DirectorInterface[]> => {
     logger.trace(`(ports) - Retreaving directors for the actor with ID: ${actorId}.`);
-    return adapters.getDirectorsByActorId(actorId);
+    return await adapters.getDirectorsByActorId(actorId);
 };
 
 export {

@@ -1,6 +1,6 @@
 import logger            from '@logger';
 
-import { getManager, Brackets }    from 'typeorm';
+import { getManager }    from 'typeorm';
 import { actors }        from '@entities/actors';
 import { movies_actors } from '@entities/movies_actors';
 
@@ -15,7 +15,7 @@ const getActorsByMovieId = async (movieId: number): Promise<actors[]> => {
 
         return obtainedActors as actors[] || [];
     } catch (error) {
-        logger.error('(orm) - (getAllMovies) -', error.message);
+        logger.error('(orm) - (getActorsByMovieId) -', error.message);
         return [];
     }
 };

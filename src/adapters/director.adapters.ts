@@ -1,16 +1,16 @@
 import { DirectorInterface } from '@interfaces';
-import { directorsRequests } from '@database/orm';
+import orm                   from '@orm';
 
 // ###############################################################
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getDirectorsByMovieId = (movieId: number): DirectorInterface[] => {
-    return directorsRequests.getDirectorsByMovieId(movieId);
+const getDirectorsByMovieId = async (movieId: number): Promise<DirectorInterface[]> => {
+    return await orm.getDirectorsByMovieId(movieId);
 };
 
-const getDirectorsByActorId = (actorId: number): DirectorInterface[] => {
-    return directorsRequests.getDirectorsByActorId(actorId);
+const getDirectorsByActorId = async (actorId: number): Promise<DirectorInterface[]> => {
+    return await orm.getDirectorsByActorId(actorId);
 };
 
 export {
