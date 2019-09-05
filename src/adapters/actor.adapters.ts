@@ -1,14 +1,14 @@
 import { ActorInterface } from '@interfaces';
-import { actorsRequests } from '@database/orm';
+import orm                from '@orm';
 
 // ###############################################################
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getActorsByMovieId = (movieId: number): ActorInterface[] => {
-    return actorsRequests.getActorsByMovieId(movieId);
+const getActorsByMovieId = async (movieId: number): Promise<ActorInterface[]> => {
+    return await orm.getActorsByMovieId(movieId);
 };
 
 export {
     getActorsByMovieId
-}
+}   

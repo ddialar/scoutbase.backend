@@ -6,9 +6,9 @@ import * as adapters      from '@adapters';
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getActorsByMovieId = (movieId: number): ActorInterface[] => {
+const getActorsByMovieId = async (movieId: number): Promise<ActorInterface[]> => {
     logger.trace(`(ports) - Retreaving actors for the movie with ID: ${movieId}.`);
-    return adapters.getActorsByMovieId(movieId);
+    return await adapters.getActorsByMovieId(movieId);
 };
 
 export {

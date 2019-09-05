@@ -6,8 +6,8 @@ import * as ports from '@ports';
 
 export default {
     Movie: {
-        actors: (parentValue: any, args: any, context: any, astData: any): ActorInterface[] => {
-            return ports.getActorsByMovieId(parentValue.id);
+        actors: async (parentValue: any, args: any, context: any, astData: any): Promise<ActorInterface[]> => {
+            return await ports.getActorsByMovieId(parentValue.id);
         },
         directors: (parentValue: any, args: any, context: any, astData: any): ActorInterface[] => {
             return ports.getDirectorsByMovieId(parentValue.id);
