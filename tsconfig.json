@@ -23,10 +23,9 @@
       "@interfaces": ["./src/core/interfaces"],
       "@resolvers":  ["./src/modules/graphql/resolvers"],
       "@directives": ["./src/modules/graphql/directives"],
-      "@database*":  ["./src/modules/database*"],
       "@orm":        ["./src/modules/typeorm/controllers"],
       "@entities*":  ["./src/modules/typeorm/entities*"],
-      "@apiErrors":  ["./src/core/entities/ApiError"]
+      "@apiErrors":  ["./src/core/apiErrors"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

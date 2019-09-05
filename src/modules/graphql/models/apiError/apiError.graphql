@@ -1,0 +1,5 @@
+type ApiError {
+    apiErrorCode: Int!
+    message: String!
+    description: String
+}
