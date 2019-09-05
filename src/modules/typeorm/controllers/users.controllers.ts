@@ -66,14 +66,11 @@ const updateUserToken = async (userId: number, newToken: string): Promise<users 
             .set({ token: newToken })
             .where('id = :id', { id: userId })
             .execute();
-        let updatedUser = await getUserById(userId);
 
-        logger.trace(updatedUser);
-        // return updatedUser || null;
-        return null;
+        return getUserById(userId);
     } catch (error) {
         logger.error('(orm) - (getUserByUsername) -', error.message);
-        return null;
+        throw error;
     }
 };
 
