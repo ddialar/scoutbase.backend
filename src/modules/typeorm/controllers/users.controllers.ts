@@ -12,6 +12,19 @@ import { users }         from '@entities/users';
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
+const getUserById = async (userId: number): Promise<users | null> => {
+    try {
+        let obtainedUser = await getManager()
+            .getRepository(users)
+            .findOneOrFail(userId);
+
+        return obtainedUser || null;
+    } catch (error) {
+        logger.error('(orm) - (getUserById) -', error.message);
+        return null;
+    }
+};
+
 const getUserByUsername = async (username: string): Promise<users | null> => {
     try {
         let obtainedUser = await getManager()
@@ -31,13 +44,14 @@ const getUserByUsername = async (username: string): Promise<users | null> => {
 
 const updateUserToken = async (userId: number, newToken: string): Promise<users | null> => {
     try {
-        let updatedUser = await getManager()
+        await getManager()
             .getRepository(users)
             .createQueryBuilder()
             .update()
             .set({ token: newToken })
             .where('id = :id', { id: userId })
             .execute();
+        let updatedUser = await getUserById(userId);
 
         logger.trace(updatedUser);
         // return updatedUser || null;
