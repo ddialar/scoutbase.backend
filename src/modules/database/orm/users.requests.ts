@@ -10,22 +10,21 @@ import users from '@database/data/users';
 // ##########           CREATING OPERATIONS             ##########
 // ###############################################################
 
-const createUser = (newUserData: NewUserInterface): UserInterface => {
-    try {
-        let newUserId = users.length++;
-        let newUser = {
-            id: newUserId,
-            token: '',
-            surname: '',
-            ...newUserData
-        };
-        users.push(newUser);
+// const createUser = (newUserData: NewUserInterface): UserInterface => {
+//     try {
+//         let newUserId = users.length++;
+//         let newUser = {
+//             id: newUserId,
+//             token: '',
+//             ...newUserData
+//         };
+//         users.push(newUser);
 
-        return newUser;
-    } catch (error) {
-        throw error;
-    }
-};
+//         return newUser;
+//     } catch (error) {
+//         throw error;
+//     }
+// };
 
 // ###############################################################
 // ##########            READING OPERATIONS             ##########
@@ -51,7 +50,7 @@ const updateUserToken = (userId: number, newToken: string): UserInterface | null
 };
 
 export {
-    createUser,
+    // createUser,
     getUserByUsername,
     updateUserToken
 };

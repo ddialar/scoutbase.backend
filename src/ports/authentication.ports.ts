@@ -22,7 +22,6 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
             throw new Error('User not found.');
         };
 
-        // TODO: Compare the provided password with the persisted one.
         if (!(await comparePassword(password, persistedUser.password))) {
             throw new Error(`Password '${password}' doesn\'t match.`);
         }
@@ -33,7 +32,6 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
         encodedToken = encodeToken(persistedUser.username);
 
         logger.trace('(login) - Updating user\'s token.');
-        // persistedUser = adapters.updateUserToken(persistedUser.id, encodedToken);
         adapters.updateUserToken(persistedUser.id, encodedToken);
         
         if (!persistedUser) {
@@ -55,34 +53,6 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
     }
 };
 
-// const logout = async (userToken: string): Promise<SimpleResponse | ApiError> => {
-//     let persistedUser: User | ApiError;
-
-//     try {
-//         logger.trace('(logout) - Looking for user by token');
-//         persistedUser = await adapters.getUserByToken(userToken);
-//         if (persistedUser instanceof ApiError) {
-//             logger.error('(logout) - Token error.', persistedUser.message);
-//             return persistedUser
-//         };
-
-//         logger.trace('(logout) - User exist\'s.');
-
-//         logger.trace('(logout) - Deleting user\'s token.');
-//         persistedUser = await adapters.updateUserToken(persistedUser.id, '');
-//         if (persistedUser instanceof ApiError) {
-//             logger.error('(login) - Error removing user\'s token.', persistedUser.message);
-//             return persistedUser
-//         };
-
-//         logger.trace('(logout) - User\'s token deleted successfully.');
-//         return new SimpleResponse();
-//     } catch (error) {
-//         return new LogoutError(error.message);
-//     }
-// };
-
 export {
-    login,
-    // logout
+    login
 };

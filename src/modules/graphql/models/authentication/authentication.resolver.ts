@@ -6,13 +6,9 @@ import * as ports                     from '@ports';
 
 export default {
     Mutation: {
-        // login: async (parentValue: any, args: any, context: any): Promise<AuthenticatedUser | ApiError> => {
         login: async (parentValue: any, args: any, context: any): Promise<AuthenticatedUserInterface> => {
             return await ports.login(args.username, args.password);
-        },
-        // logout: async (parentValue: any, args: any, context: any): Promise<SimpleResponse | ApiError> => {
-        //     return await ports.logout(context.token);
-        // }
+        }
     },
     // Unions: {
     //     AuthenticatedUserUnion: {

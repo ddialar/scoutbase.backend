@@ -11,17 +11,22 @@ import * as adapters      from '@adapters';
 // ###############################################################
 
 const createUser = async (newUserData: NewUserInterface): Promise<AuthenticatedUserInterface> => {
+    let createdUser;
+    let createdUserToken;
+    
     newUserData.password = await encodePassword(newUserData.password);
 
-    let createdUser = adapters.createUser(newUserData);
-    let createdUserToken = encodeToken(createdUser.username)
-    adapters.updateUserToken(createdUser.id, createdUserToken);
+    createdUser = await adapters.createUser(newUserData);
+    if (createdUser) {
+        createdUserToken = encodeToken(createdUser.username)
+        adapters.updateUserToken(createdUser.id, createdUserToken);
+    }
 
     return {
-        token: createdUserToken,
+        token: createdUserToken || 'token error',
         user: {
-            id: createdUser.id,
-            name: createdUser.name
+            id: (createdUser) ? createdUser.id : 99,
+            name: (createdUser) ? createdUser.name : 'name error'
         }
     }
 };

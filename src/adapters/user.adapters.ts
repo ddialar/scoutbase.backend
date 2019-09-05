@@ -9,9 +9,9 @@ import { usersRequests } from '@database/orm';
 // ##########           CREATING OPERATIONS             ##########
 // ###############################################################
 
-const createUser = (newUserData: NewUserInterface): UserInterface => {
+const createUser = async (newUserData: NewUserInterface): Promise<UserInterface | null> => {
     try {
-        return usersRequests.createUser(newUserData);
+        return await orm.createUser(newUserData);
     } catch (error) {
         throw error;
     }
@@ -35,7 +35,6 @@ const getUserByUsername = async (username: string): Promise<UserInterface | null
 
 const updateUserToken = async (userId: number, newToken: string): Promise<UserInterface | null> => {
     try {
-        // return usersRequests.updateUserToken(userId, newToken);
         return await orm.updateUserToken(userId, newToken);
     } catch (error) {
         throw error;
