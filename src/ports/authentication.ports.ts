@@ -2,12 +2,10 @@ import logger              from '@logger';
 
 import { comparePassword } from '@services/password.services';
 import { encodeToken }     from '@services/token.services';
-import orm                 from '@orm';
 import {
     UserInterface,
     AuthenticatedUserInterface
 } from '@interfaces';
-
 
 import * as adapters from '@adapters';
 
@@ -18,7 +16,7 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
     try {
         logger.trace(`(login) - Looking for user with username '${username}'.`);
 
-        persistedUser = await orm.getUserByUsername(username);
+        persistedUser = await adapters.getUserByUsername(username);
 
         if (!persistedUser) {
             throw new Error('User not found.');
@@ -35,7 +33,8 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
         encodedToken = encodeToken(persistedUser.username);
 
         logger.trace('(login) - Updating user\'s token.');
-        persistedUser = adapters.updateUserToken(persistedUser.id, encodedToken);
+        // persistedUser = adapters.updateUserToken(persistedUser.id, encodedToken);
+        adapters.updateUserToken(persistedUser.id, encodedToken);
         
         if (!persistedUser) {
             logger.error('(login) - Error updating user\'s token.');

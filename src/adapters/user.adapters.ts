@@ -2,6 +2,7 @@ import {
     NewUserInterface,
     UserInterface
 } from '@interfaces';
+import orm from '@orm';
 import { usersRequests } from '@database/orm';
 
 // ###############################################################
@@ -20,9 +21,9 @@ const createUser = (newUserData: NewUserInterface): UserInterface => {
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getUserByUsername = (username: string): UserInterface | null => {
+const getUserByUsername = async (username: string): Promise<UserInterface | null> => {
     try {
-        return usersRequests.getUserByUsername(username);
+        return await orm.getUserByUsername(username);
     } catch (error) {
         throw error;
     }
@@ -32,9 +33,10 @@ const getUserByUsername = (username: string): UserInterface | null => {
 // ##########           UPDATING OPERATIONS             ##########
 // ###############################################################
 
-const updateUserToken = (userId: number, newToken: string): UserInterface | null => {
+const updateUserToken = async (userId: number, newToken: string): Promise<UserInterface | null> => {
     try {
-        return usersRequests.updateUserToken(userId, newToken);
+        // return usersRequests.updateUserToken(userId, newToken);
+        return await orm.updateUserToken(userId, newToken);
     } catch (error) {
         throw error;
     }
