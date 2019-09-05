@@ -1,5 +1,5 @@
-# import AuthenticatedUser from '../user/user.graphql'
+# import AuthenticatedUserUnion from '../user/user.graphql'
 
 type Mutation {
-    login(username: String, password: String): AuthenticatedUser!
+    login(username: String, password: String): AuthenticatedUserUnion!
 }

@@ -1,6 +1,5 @@
 import logger             from '@logger';
 import { encodePassword } from '@services/password.services';
-import { encodeToken }    from '@services/token.services';
 import * as adapters      from '@adapters';
 import { 
     NewUserInterface,

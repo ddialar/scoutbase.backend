@@ -3,13 +3,15 @@ import logger              from '@logger';
 import { comparePassword } from '@services/password.services';
 import { encodeToken }     from '@services/token.services';
 import {
+    ApiErrorInterface,
     UserInterface,
     AuthenticatedUserInterface
 } from '@interfaces';
+import { AuthenticationBadRequestError } from '@apiErrors';
 
 import * as adapters from '@adapters';
 
-const login = async (username: string, password: string): Promise<AuthenticatedUserInterface> => {
+const login = async (username: string, password: string): Promise<AuthenticatedUserInterface | ApiErrorInterface> => {
     let persistedUser: UserInterface | null;
     let encodedToken: string;
 
@@ -19,11 +21,11 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
         persistedUser = await adapters.getUserByUsername(username);
 
         if (!persistedUser) {
-            throw new Error('User not found.');
+            throw new Error(`User '${username}' not found.`);
         };
 
         if (!(await comparePassword(password, persistedUser.password))) {
-            throw new Error(`Password '${password}' doesn\'t match.`);
+            throw new Error(`Provided password doesn\'t match for username '${username}'.`);
         }
 
         logger.trace('(login) - User exist\'s and its password matchs.');
@@ -49,7 +51,7 @@ const login = async (username: string, password: string): Promise<AuthenticatedU
         };
     } catch (error) {
         logger.error('Authenticating user.', error.message);
-        throw new Error(`Authenticating user. ${error.message}`);
+        return new AuthenticationBadRequestError();
     }
 };
 

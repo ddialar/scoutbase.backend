@@ -13,7 +13,7 @@ export default class IsAuthenticatedUserDirective extends SchemaDirectiveVisitor
             if (context && context.token && decodeToken(context.token)) {
                 return await resolve.apply(this, args);
             } else {
-                return null;
+                return 'Login required.';
             }
 
         }
