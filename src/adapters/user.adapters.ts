@@ -3,7 +3,6 @@ import {
     UserInterface
 } from '@interfaces';
 import orm from '@orm';
-import { usersRequests } from '@database/orm';
 
 // ###############################################################
 // ##########           CREATING OPERATIONS             ##########

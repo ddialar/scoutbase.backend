@@ -12,9 +12,15 @@ const Mutation = {
     ...UserResolvers.Mutation
 };
 
+const Unions = {
+    ...AuthenticationResolvers.Unions,
+    ...UserResolvers.Unions
+};
+
 export default {
     Query,
     Mutation,
+    ...Unions,
     Movie: MovieResolvers.Movie,
     Actor: ActorResolvers.Actor
 };

@@ -1,3 +1,5 @@
+# import ApiError from '../apiError/apiError.graphql'
+
 input UserInput {
     name: String!
     username: String!
@@ -14,6 +16,9 @@ type AuthenticatedUser {
     user: User
 }
 
+union UserUnion = User | ApiError
+union AuthenticatedUserUnion = AuthenticatedUser | ApiError
+
 type Mutation {
-    createUser(data: UserInput!): AuthenticatedUser!
+    createUser(data: UserInput!): UserUnion!
 }

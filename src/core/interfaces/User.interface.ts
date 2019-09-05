@@ -16,4 +16,3 @@ export interface AuthenticatedUserInterface {
     token: String;
     user: Pick<UserInterface, 'id' | 'name'>;
 };
-
