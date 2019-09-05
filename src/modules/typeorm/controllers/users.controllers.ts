@@ -1,7 +1,11 @@
-import logger            from '@logger';
+import logger               from '@logger';
 
-import { getManager }    from 'typeorm';
-import { users }         from '@entities/users';
+import { 
+    getManager, 
+    InsertResult 
+} from 'typeorm';
+import { users }            from '@entities/users';
+import { NewUserInterface } from '@interfaces'
 
 // ###############################################################
 // ##########           CREATING OPERATIONS             ##########
@@ -31,12 +35,12 @@ const getUserById = async (userId: number): Promise<users | null> => {
     try {
         let obtainedUser = await getManager()
             .getRepository(users)
-            .findOneOrFail(userId);
+            .findOne(userId);
 
         return obtainedUser || null;
     } catch (error) {
         logger.error('(orm) - (getUserById) -', error.message);
-        return null;
+        throw error;
     }
 };
 
@@ -75,6 +79,7 @@ const updateUserToken = async (userId: number, newToken: string): Promise<users 
 };
 
 export {
+    createUser,
     getUserByUsername,
     updateUserToken
 }
