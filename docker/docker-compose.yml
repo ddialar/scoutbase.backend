@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  database:
+  dev-database:
     image: mysql:5.7
     container_name: ddialar-scoutbase
     environment:
@@ -11,6 +11,22 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports: 
       - 3306:3306
+    volumes: 
+      - ./configure-database:/docker-entrypoint-initdb.d:rw
+      - type: volume
+        source: ddialar-scoutbase-database
+        target: /var/lib/mysql
+        consistency: consistent
+  test-database:
+    image: mysql:5.7
+    container_name: ddialar-scoutbase-test
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+      - MYSQL_ROOT_PASSWORD=root
+    ports: 
+      - 3322:3306
     volumes: 
       - ./configure-database:/docker-entrypoint-initdb.d:rw
       - type: volume
