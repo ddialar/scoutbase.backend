@@ -1,10 +1,10 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
-import {movies_actors} from "./movies_actors";
-import {movies_directors} from "./movies_directors";
+import {MoviesActors} from "./MoviesActors";
+import {MoviesDirectors} from "./MoviesDirectors";
 
 
 @Entity("movies" ,{schema:"scoutbase" } )
-export class movies {
+export class Movies {
 
     @PrimaryGeneratedColumn({
         type:"int", 
@@ -37,12 +37,12 @@ export class movies {
         
 
    
-    @OneToMany(()=>movies_actors, (movies_actors: movies_actors)=>movies_actors.movie,{ onDelete: 'CASCADE' ,onUpdate: 'CASCADE' })
-    moviesActorss:movies_actors[];
+    @OneToMany(()=>MoviesActors, (MoviesActors: MoviesActors)=>MoviesActors.movie,{ onDelete: 'CASCADE' ,onUpdate: 'CASCADE' })
+    moviesActorss:MoviesActors[];
     
 
    
-    @OneToMany(()=>movies_directors, (movies_directors: movies_directors)=>movies_directors.movie,{ onDelete: 'CASCADE' ,onUpdate: 'CASCADE' })
-    moviesDirectorss:movies_directors[];
+    @OneToMany(()=>MoviesDirectors, (MoviesDirectors: MoviesDirectors)=>MoviesDirectors.movie,{ onDelete: 'CASCADE' ,onUpdate: 'CASCADE' })
+    moviesDirectorss:MoviesDirectors[];
     
 }

@@ -1,12 +1,12 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
-import {movies} from "./movies";
-import {directors} from "./directors";
+import {Movies} from "./Movies";
+import {Directors} from "./Directors";
 
 
 @Entity("movies_directors" ,{schema:"scoutbase" } )
 @Index("movies_directors_FK",["movie",])
 @Index("movies_directors_FK_1",["director",])
-export class movies_directors {
+export class MoviesDirectors {
 
     @PrimaryGeneratedColumn({
         type:"int", 
@@ -16,14 +16,14 @@ export class movies_directors {
         
 
    
-    @ManyToOne(()=>movies, (movies: movies)=>movies.moviesDirectorss,{  nullable:false,onDelete: 'CASCADE',onUpdate: 'CASCADE' })
+    @ManyToOne(()=>Movies, (movies: Movies)=>movies.moviesDirectorss,{  nullable:false,onDelete: 'CASCADE',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'movie_id'})
-    movie:movies | null;
+    movie:Movies | null;
 
 
    
-    @ManyToOne(()=>directors, (directors: directors)=>directors.moviesDirectorss,{  nullable:false,onDelete: 'CASCADE',onUpdate: 'CASCADE' })
+    @ManyToOne(()=>Directors, (directors: Directors)=>directors.moviesDirectorss,{  nullable:false,onDelete: 'CASCADE',onUpdate: 'CASCADE' })
     @JoinColumn({ name:'director_id'})
-    director:directors | null;
+    director:Directors | null;
 
 }

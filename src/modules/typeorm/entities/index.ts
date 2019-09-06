@@ -1,19 +1,19 @@
-import { users } from './users';
-import { actors } from './actors';
-import { directors } from './directors';
-import { movies } from './movies';
-import { movies_actors } from './movies_actors';
-import { movies_directors } from './movies_directors';
-import { actors_directors } from './actors_directors';
+import { Users } from './Users';
+import { Actors } from './Actors';
+import { Directors } from './Directors';
+import { Movies } from './Movies';
+import { MoviesActors } from './MoviesActors';
+import { MoviesDirectors } from './MoviesDirectors';
+import { ActorsDirectors } from './ActorsDirectors';
 
 const entities = [
-    users,
-    actors,
-    directors,
-    movies,
-    movies_actors,
-    movies_directors,
-    actors_directors
+    Users,
+    Actors,
+    Directors,
+    Movies,
+    MoviesActors,
+    MoviesDirectors,
+    ActorsDirectors
 ];
 
 export default entities;

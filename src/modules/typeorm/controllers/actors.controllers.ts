@@ -1,19 +1,19 @@
 import logger            from '@logger';
 
 import { getManager }    from 'typeorm';
-import { actors }        from '@entities/actors';
-import { movies_actors } from '@entities/movies_actors';
+import { Actors }        from '@entities/Actors';
+import { MoviesActors } from '@entities/MoviesActors';
 
-const getActorsByMovieId = async (movieId: number): Promise<actors[]> => {
+const getActorsByMovieId = async (movieId: number): Promise<Actors[]> => {
     try {
         let obtainedActors = await getManager()
-            .getRepository(actors)
-            .createQueryBuilder('actors')
-            .leftJoinAndSelect(movies_actors, 'movies_actors', 'movies_actors.actor_id = actors.id')
-            .where('movies_actors.movie_id = :movieId', { movieId })
+            .getRepository(Actors)
+            .createQueryBuilder('Actors')
+            .leftJoinAndSelect(MoviesActors, 'MoviesActors', 'MoviesActors.actor_id = Actors.id')
+            .where('MoviesActors.movie_id = :movieId', { movieId })
             .getMany();
 
-        return obtainedActors as actors[] || [];
+        return obtainedActors as Actors[] || [];
     } catch (error) {
         logger.error('(orm) - (getActorsByMovieId) -', error.message);
         return [];

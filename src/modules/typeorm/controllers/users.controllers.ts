@@ -4,17 +4,17 @@ import {
     getManager, 
     InsertResult 
 } from 'typeorm';
-import { users }            from '@entities/users';
+import { Users }            from '@entities/Users';
 import { NewUserInterface } from '@interfaces'
 
 // ###############################################################
 // ##########           CREATING OPERATIONS             ##########
 // ###############################################################
 
-const createUser = async (newUserData: NewUserInterface): Promise<users | null> => {
+const createUser = async (newUserData: NewUserInterface): Promise<Users | null> => {
     try {
         let newUserId = await getManager()
-            .getRepository(users)
+            .getRepository(Users)
             .insert(newUserData)
             .then((result: InsertResult) => {
                 return result.identifiers[0].id;
@@ -31,10 +31,10 @@ const createUser = async (newUserData: NewUserInterface): Promise<users | null> 
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getUserById = async (userId: number): Promise<users | null> => {
+const getUserById = async (userId: number): Promise<Users | null> => {
     try {
         let obtainedUser = await getManager()
-            .getRepository(users)
+            .getRepository(Users)
             .findOne(userId);
 
         return obtainedUser || null;
@@ -44,10 +44,10 @@ const getUserById = async (userId: number): Promise<users | null> => {
     }
 };
 
-const getUserByUsername = async (username: string): Promise<users | null> => {
+const getUserByUsername = async (username: string): Promise<Users | null> => {
     try {
         let obtainedUser = await getManager()
-            .getRepository(users)
+            .getRepository(Users)
             .findOne({ where: { username }});
 
         return obtainedUser || null;
@@ -61,10 +61,10 @@ const getUserByUsername = async (username: string): Promise<users | null> => {
 // ##########           UPDATING OPERATIONS             ##########
 // ###############################################################
 
-const updateUserToken = async (userId: number, newToken: string): Promise<users | null> => {
+const updateUserToken = async (userId: number, newToken: string): Promise<Users | null> => {
     try {
         await getManager()
-            .getRepository(users)
+            .getRepository(Users)
             .createQueryBuilder()
             .update()
             .set({ token: newToken })

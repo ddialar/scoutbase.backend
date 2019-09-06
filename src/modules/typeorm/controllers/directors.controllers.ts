@@ -1,36 +1,36 @@
 import logger               from '@logger';
 
 import { getManager }       from 'typeorm';
-import { directors  }       from '@entities/directors';
-import { movies_directors } from '@entities/movies_directors';
-import { actors_directors } from '@entities/actors_directors';
+import { Directors  }       from '@entities/Directors';
+import { MoviesDirectors } from '@entities/MoviesDirectors';
+import { ActorsDirectors }  from '@entities/ActorsDirectors';
 
-const getDirectorsByMovieId = async (movieId: number): Promise<directors[]> => {
+const getDirectorsByMovieId = async (movieId: number): Promise<Directors[]> => {
     try {
         let obtainedDirectors = await getManager()
-            .getRepository(directors)
-            .createQueryBuilder('directors')
-            .leftJoinAndSelect(movies_directors, 'movies_directors', 'movies_directors.director_id = directors.id')
-            .where('movies_directors.movie_id = :movieId', { movieId })
+            .getRepository(Directors)
+            .createQueryBuilder('Directors')
+            .leftJoinAndSelect(MoviesDirectors, 'MoviesDirectors', 'MoviesDirectors.director_id = Directors.id')
+            .where('MoviesDirectors.movie_id = :movieId', { movieId })
             .getMany();
 
-        return obtainedDirectors as directors[] || [];
+        return obtainedDirectors as Directors[] || [];
     } catch (error) {
         logger.error('(orm) - (getDirectorsByMovieId) -', error.message);
         return [];
     }
 };
 
-const getDirectorsByActorId = async (actorId: number): Promise<directors[]> => {
+const getDirectorsByActorId = async (actorId: number): Promise<Directors[]> => {
     try {
         let obtainedDirectors = await getManager()
-            .getRepository(directors)
-            .createQueryBuilder('directors')
-            .leftJoinAndSelect(actors_directors, 'actors_directors', 'actors_directors.director_id = directors.id')
-            .where('actors_directors.actor_id = :actorId', { actorId })
+            .getRepository(Directors)
+            .createQueryBuilder('Directors')
+            .leftJoinAndSelect(ActorsDirectors, 'ActorsDirectors', 'ActorsDirectors.director_id = Directors.id')
+            .where('ActorsDirectors.actor_id = :actorId', { actorId })
             .getMany();
 
-        return obtainedDirectors as directors[] || [];
+        return obtainedDirectors as Directors[] || [];
     } catch (error) {
         logger.error('(orm) - (getDirectorsByActorId) -', error.message);
         return [];

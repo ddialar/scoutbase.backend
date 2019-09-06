@@ -3,7 +3,7 @@ import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne
 
 @Entity("users" ,{schema:"scoutbase" } )
 @Index("users_username_IDX",["username",])
-export class users {
+export class Users {
 
     @PrimaryGeneratedColumn({
         type:"int", 

@@ -1,11 +1,11 @@
 import logger         from '@logger';
 
 import { getManager } from 'typeorm';
-import { movies }     from '@entities/movies';
+import { Movies }     from '@entities/Movies';
 
-const getAllMovies = async (): Promise<movies[]> => {
+const getAllMovies = async (): Promise<Movies[]> => {
     try {
-        let obtainedMovies = await getManager().getRepository(movies).find();
+        let obtainedMovies = await getManager().getRepository(Movies).find();
         return obtainedMovies || [];
     } catch (error) {
         logger.error('(orm) - (getAllMovies) -', error.message);
