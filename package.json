@@ -6,6 +6,12 @@
   "scripts": {
     "build:dev": "webpack --config ./webpack/webpack.dev.js",
     "build:prod": "webpack --config ./webpack/webpack.prod.js",
+    "docker:compose": "npm run docker:compose_dev; npm run docker:compose_test",
+    "docker:compose_dev": "docker-compose -f ./docker/development/docker-compose.yml up -d",
+    "docker:compose_test": "docker-compose -f ./docker/test/docker-compose.yml up -d",
+    "docker:clean": "npm run docker:clean_dev; npm run docker:clean_test",
+    "docker:clean_dev": "docker container rm -f ddialar-scoutbase; docker volume rm docker_ddialar-scoutbase-database",
+    "docker:clean_test": "docker container rm -f ddialar-scoutbase-test; docker volume rm docker_ddialar-scoutbase-database-test",
     "test": "npm run test:clear_cache; NODE_OPTIONS=--max_old_space_size=4096 jest --runInBand --watch",
     "test:clear_cache": "jest --clearCache"
   },
@@ -69,20 +75,22 @@
       "<rootDir>/dist/*",
       "<rootDir>/logs/*"
     ],
-    "modulePaths": [
-      "src"
-    ],
     "moduleFileExtensions": [
       "ts",
       "js"
     ],
     "moduleNameMapper": {
-      "@ports(.*)$": "<rootDir>/src/ports$1",
-      "@adapters(.*)$": "<rootDir>/src/adapters$1",
+      "@logger":          "<rootDir>/src/core/common/logger",
+      "@ports(.*)$":      "<rootDir>/src/ports$1",
+      "@adapters(.*)$":   "<rootDir>/src/adapters$1",
+      "@services(.*)$":   "<rootDir>/src/core/services$1",
       "@interfaces(.*)$": "<rootDir>/src/core/interfaces$1",
-      "@services(.*)$": "<rootDir>/src/core/services$1",
-      "@logger": "<rootDir>/src/core/common/logger",
-      "@graphql(.*)$": "<rootDir>/src/modules/graphql$1"
+      "@resolvers$":      "<rootDir>/src/modules/graphql/resolvers",
+      "@directives$":     "<rootDir>/src/modules/graphql/directives",
+      "@graphql(.*)$":    "<rootDir>/src/modules/graphql$1",
+      "@orm(.*)$":        "<rootDir>/src/modules/typeorm/controllers$1",
+      "@entities(.*)$":   "<rootDir>/src/modules/typeorm/entities$1",
+      "@apiErrors$":      "<rootDir>/src/core/apiErrors"
     },
     "verbose": false,
     "testURL": "http://localhost",
