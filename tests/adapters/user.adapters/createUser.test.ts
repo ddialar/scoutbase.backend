@@ -4,6 +4,7 @@ dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 
 import orm                  from '@orm';
 import { Users }            from '@entities/Users';
+import { createUser }       from '@adapters';
 import { NewUserInterface } from '@interfaces';
 import { getManager }       from 'typeorm';
 
@@ -39,7 +40,7 @@ afterAll(async (done) => {
     }
 });
 
-describe('Testing ORM ...', () => {
+describe('Testing User adapters ...', () => {
     describe('working with \'createUser\' ...', () => {
         test('providing a movie ID, it must return all actors bound with this movie.', async (done) => {
             let newUserData: NewUserInterface = mockedActorData;
@@ -49,7 +50,7 @@ describe('Testing ORM ...', () => {
                 password: '$2a$04$ClyWJzl7mPUtaOgv.fvOhu9t5sqnCFeoH1KRab5omyvKAd3lRZt.y',
                 token: ''
             };
-            let createdResult = await orm.createUser(newUserData);
+            let createdResult = await createUser(newUserData);
 
             expect(createdResult).not.toBeNull();
             expect(createdResult).toHaveProperty('id');
