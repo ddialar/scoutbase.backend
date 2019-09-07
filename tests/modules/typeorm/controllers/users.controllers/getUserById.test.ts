@@ -64,7 +64,7 @@ describe('Testing ORM ...', () => {
 
             done();
         });
-        test('providing a movie ID, it must return all actors bound with this movie.', async (done) => {
+        test('providing a userId, it must return the selected user data.', async (done) => {
             let userId: number = mockedUserId;
             let expectedResult: UserInterface = {
                 'id': mockedUserId,

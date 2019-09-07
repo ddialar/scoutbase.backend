@@ -66,7 +66,7 @@ describe('Testing ORM ...', () => {
 
             done();
         });
-        test('providing a valid user ID and new token, the user\'s record must be updated.', async (done) => {
+        test('providing a valid userId and new token, the user\'s record must be updated.', async (done) => {
             let userId: number = mockedUserId;
             let newToken: string = 'newUserToken';
             let expectedResult: UserInterface = {
