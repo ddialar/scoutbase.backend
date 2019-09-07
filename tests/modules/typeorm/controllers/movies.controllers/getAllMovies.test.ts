@@ -2,9 +2,10 @@ import * as dotenv from 'dotenv';
 import * as path   from 'path';
 dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 
-import orm from '@orm';
+import orm                from '@orm';
+import { MovieInterface } from '@interfaces';
 
-const mockedData = [
+const mockedData: MovieInterface[] = [
     {
         "id": 1,
         "title": "The Imitation Game",
