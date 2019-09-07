@@ -43,14 +43,10 @@ afterAll(async (done) => {
 
 describe('Testing ORM ...', () => {
     describe('working with \'getDirectorsByActorId\' ...', () => {
-        test('with no actor ID provided, it must return an empty collection.', async (done) => {
+        test('with no actor ID provided, it must return an empty collection.', () => {
             let actorId = null;
-            let expectedResult = [];
-            let obtainedResult = await orm.getDirectorsByActorId(actorId);
 
-            expect(obtainedResult).toHaveLength(expectedResult.length);
-
-            done();
+            expect(orm.getDirectorsByActorId(actorId)).rejects.toThrow('Actor identification not valid.');
         });
         test('providing a non recorded actor ID, it must return an empty collection.', async (done) => {
             let actorId = 99;

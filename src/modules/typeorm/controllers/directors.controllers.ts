@@ -11,6 +11,10 @@ import { ActorsDirectors } from '@entities/ActorsDirectors';
 
 const getDirectorsByMovieId = async (movieId: number): Promise<Directors[]> => {
     try {
+        if (!movieId) {
+            throw new Error('Movie identification not valid.');
+        }
+
         let obtainedDirectors = await getManager()
             .getRepository(Directors)
             .createQueryBuilder('Directors')
@@ -27,6 +31,10 @@ const getDirectorsByMovieId = async (movieId: number): Promise<Directors[]> => {
 
 const getDirectorsByActorId = async (actorId: number): Promise<Directors[]> => {
     try {
+        if (!actorId) {
+            throw new Error('Actor identification not valid.');
+        }
+
         let obtainedDirectors = await getManager()
             .getRepository(Directors)
             .createQueryBuilder('Directors')
