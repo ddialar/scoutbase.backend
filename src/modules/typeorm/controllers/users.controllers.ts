@@ -33,6 +33,9 @@ const createUser = async (newUserData: NewUserInterface): Promise<Users | null> 
 
 const getUserById = async (userId: number): Promise<Users | null> => {
     try {
+        if (!userId) {
+            throw new Error('User identification not valid.');
+        }
         let obtainedUser = await getManager()
             .getRepository(Users)
             .findOne(userId);
@@ -80,6 +83,7 @@ const updateUserToken = async (userId: number, newToken: string): Promise<Users 
 
 export {
     createUser,
+    getUserById,
     getUserByUsername,
     updateUserToken
 }
