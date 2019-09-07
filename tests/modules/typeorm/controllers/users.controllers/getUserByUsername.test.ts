@@ -70,11 +70,11 @@ describe('Testing ORM ...', () => {
         test('providing a movie ID, it must return all actors bound with this movie.', async (done) => {
             let username: string = mockedActorData.username;
             let expectedResult: UserInterface = {
-                "id": mockedUserId,
-                "name": mockedActorData.name,
-                "username": mockedActorData.username,
-                "password": mockedActorData.password,
-                "token": ""
+                'id': mockedUserId,
+                'name': mockedActorData.name,
+                'username': mockedActorData.username,
+                'password': mockedActorData.password,
+                'token': ''
             };
 
             let obtainedResult = await orm.getUserByUsername(username);
