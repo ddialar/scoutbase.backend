@@ -3,7 +3,7 @@ import {ActorsDirectors} from "./ActorsDirectors";
 import {MoviesDirectors} from "./MoviesDirectors";
 
 
-@Entity("directors" ,{schema:"scoutbase" } )
+@Entity("directors" ,{ schema: process.env.ORM_DATABASE_NAME } )
 export class Directors {
 
     @PrimaryGeneratedColumn({

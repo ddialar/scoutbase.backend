@@ -3,7 +3,7 @@ import {Movies} from "./Movies";
 import {Actors} from "./Actors";
 
 
-@Entity("movies_actors" ,{schema:"scoutbase" } )
+@Entity("movies_actors" ,{ schema: process.env.ORM_DATABASE_NAME } )
 @Index("movies_actors_FK",["movie",])
 @Index("movies_actors_FK_1",["actor",])
 export class MoviesActors {

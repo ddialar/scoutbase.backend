@@ -12,11 +12,10 @@ const getAllMovies = async (): Promise<Movies[]> => {
         let obtainedMovies = await getManager()
             .getRepository(Movies)
             .find();
-            
         return obtainedMovies || [];
     } catch (error) {
         logger.error('(orm) - (getAllMovies) -', error.message);
-        return [];
+        throw error;
     }
 };
 

@@ -1,7 +1,7 @@
 import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 
 
-@Entity("users" ,{schema:"scoutbase" } )
+@Entity("users" ,{ schema: process.env.ORM_DATABASE_NAME } )
 @Index("users_username_IDX",["username",])
 export class Users {
 
