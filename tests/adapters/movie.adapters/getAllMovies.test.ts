@@ -4,6 +4,7 @@ dotenv.config({ path: path.join(process.env.PWD, '/config/.env/test.env') });
 
 import orm                from '@orm';
 import { MovieInterface } from '@interfaces';
+import { getAllMovies }   from '@adapters';
 
 const mockedData: MovieInterface[] = [
     {
@@ -64,11 +65,11 @@ afterAll(async (done) => {
     }
 });
 
-describe('Testing ORM ...', () => {
-    describe('working with \'getAllMovies\' ...', () => {
+describe('Testing Movie adapters ...', () => {
+    describe('working with \'getMovies\' ...', () => {
         test('it must return all persisted movies.', async (done) => {
             let expectedResult = mockedData;
-            let obtainedResult = await orm.getAllMovies();
+            let obtainedResult = await getAllMovies();
 
             expect(obtainedResult).not.toBeNull();
             expect(obtainedResult).toHaveLength(expectedResult.length);
