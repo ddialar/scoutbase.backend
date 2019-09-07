@@ -4,6 +4,10 @@ import { getManager }    from 'typeorm';
 import { Actors }        from '@entities/Actors';
 import { MoviesActors } from '@entities/MoviesActors';
 
+// ###############################################################
+// ##########            READING OPERATIONS             ##########
+// ###############################################################
+
 const getActorsByMovieId = async (movieId: number): Promise<Actors[]> => {
     try {
         let obtainedActors = await getManager()
