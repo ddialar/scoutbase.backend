@@ -9,11 +9,7 @@ import orm from '@orm';
 // ###############################################################
 
 const createUser = async (newUserData: NewUserInterface): Promise<UserInterface | null> => {
-    try {
-        return await orm.createUser(newUserData);
-    } catch (error) {
-        throw error;
-    }
+    return await orm.createUser(newUserData);
 };
 
 // ###############################################################
@@ -21,11 +17,7 @@ const createUser = async (newUserData: NewUserInterface): Promise<UserInterface 
 // ###############################################################
 
 const getUserByUsername = async (username: string): Promise<UserInterface | null> => {
-    try {
-        return await orm.getUserByUsername(username);
-    } catch (error) {
-        throw error;
-    }
+    return await orm.getUserByUsername(username);
 };
 
 // ###############################################################
@@ -33,11 +25,7 @@ const getUserByUsername = async (username: string): Promise<UserInterface | null
 // ###############################################################
 
 const updateUserToken = async (userId: number, newToken: string): Promise<UserInterface | null> => {
-    try {
-        return await orm.updateUserToken(userId, newToken);
-    } catch (error) {
-        throw error;
-    }
+    return await orm.updateUserToken(userId, newToken);
 };
 
 export {
