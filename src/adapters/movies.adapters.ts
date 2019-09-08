@@ -5,7 +5,7 @@ import orm                from '@orm';
 // ##########            READING OPERATIONS             ##########
 // ###############################################################
 
-const getAllMovies = async (movieIds: number[]): Promise<MovieInterface[]> => {
+const getAllMovies = async (): Promise<MovieInterface[]> => {
     return await orm.getAllMovies();
 };
 
