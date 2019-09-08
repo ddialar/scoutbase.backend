@@ -15,7 +15,7 @@ import {
 } from 'typeorm';
 
 var mockedUserId: number;
-const mockedActorData: NewUserInterface = {
+const mockedUserData: NewUserInterface = {
     name: 'TestActor',
     username: 'tactor',
     password: '$2a$04$ClyWJzl7mPUtaOgv.fvOhu9t5sqnCFeoH1KRab5omyvKAd3lRZt.y'
@@ -26,7 +26,7 @@ beforeAll(async (done) => {
         await orm.connect();
         mockedUserId = await getManager()
             .getRepository(Users)
-            .insert(mockedActorData)
+            .insert(mockedUserData)
             .then((result: InsertResult) => {
                 return result.identifiers[0].id;
             });
@@ -69,12 +69,12 @@ describe('Testing User adapters ...', () => {
             done();
         });
         test('providing a username, it must return the selected user data.', async (done) => {
-            let username: string = mockedActorData.username;
+            let username: string = mockedUserData.username;
             let expectedResult: UserInterface = {
                 'id': mockedUserId,
-                'name': mockedActorData.name,
-                'username': mockedActorData.username,
-                'password': mockedActorData.password,
+                'name': mockedUserData.name,
+                'username': mockedUserData.username,
+                'password': mockedUserData.password,
                 'token': ''
             };
 

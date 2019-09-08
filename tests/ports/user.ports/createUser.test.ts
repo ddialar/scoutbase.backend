@@ -8,7 +8,7 @@ import { createUser }       from '@ports';
 import { NewUserInterface } from '@interfaces';
 import { getManager }       from 'typeorm';
 
-const mockedActorData: NewUserInterface = {
+const mockedUserData: NewUserInterface = {
     name: 'TestActor',
     username: 'tactor',
     password: '$2a$04$ClyWJzl7mPUtaOgv.fvOhu9t5sqnCFeoH1KRab5omyvKAd3lRZt.y'
@@ -43,7 +43,7 @@ afterAll(async (done) => {
 describe('Testing User ports ...', () => {
     describe('working with \'createUser\' ...', () => {
         test('providing a movie ID, it must return all actors bound with this movie.', async (done) => {
-            let newUserData: NewUserInterface = mockedActorData;
+            let newUserData: NewUserInterface = mockedUserData;
             let expectedResult = {
                 name: 'TestActor',
                 username: 'tactor',
