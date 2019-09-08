@@ -8,7 +8,6 @@ import { importSchema } from 'graphql-import';
 import { ApolloServerBase } from 'apollo-server-core';
 import { createTestClient } from 'apollo-server-testing';
 
-import * as jwt from 'jsonwebtoken';
 import orm from '@orm';
 import { Users } from '@entities/Users';
 import {
@@ -17,7 +16,6 @@ import {
 } from 'typeorm';
 import {
     NewUserInterface,
-    AuthenticatedUserInterface,
     ApiErrorInterface
 } from '@interfaces';
 import { 
@@ -68,7 +66,7 @@ afterAll(async (done) => {
 
 describe('Testing GraphQL User resolvers ...', () => {
     describe('working with \'createUser\' mutation ...', () => {
-        xdescribe('testing the raw resolver ...', () => {
+        describe('testing the raw resolver ...', () => {
             let parentValues = {};
             let context = {};
             let astData = {};
@@ -205,8 +203,6 @@ describe('Testing GraphQL User resolvers ...', () => {
                     'username': 'mwazowski',
                 };
                 let obtainedResult = await testingClient.mutate({ mutation: CREATE_USER, variables });
-
-                console.log(JSON.stringify(obtainedResult, null, 4));
 
                 expect(obtainedResult).not.toBeNull();
                 expect(obtainedResult).toHaveProperty('data');

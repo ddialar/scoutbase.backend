@@ -14,6 +14,7 @@
     "docker:clean_dev": "docker container rm -f ddialar-scoutbase; docker volume rm docker_ddialar-scoutbase-database",
     "docker:clean_test": "docker container rm -f ddialar-scoutbase-test; docker volume rm docker_ddialar-scoutbase-database-test",
     "test": "npm run test:clear_cache; NODE_OPTIONS=--max_old_space_size=4096 jest --runInBand --watch",
+    "test:coverage": "npm run test:clear_cache; jest --runInBand --coverage",
     "test:clear_cache": "jest --clearCache"
   },
   "keywords": [
