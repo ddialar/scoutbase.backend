@@ -4,4 +4,5 @@ logs
 docker/data/
 
 .DS_Store
+.vscode
 package-lock.json
