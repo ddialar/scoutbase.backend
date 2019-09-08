@@ -173,7 +173,6 @@ describe('Testing GraphQL Authentication resolvers ...', () => {
                 let obtainedResult = await testingClient.mutate({ mutation: LOGIN, variables });
 
                 expect(obtainedResult).not.toBeNull();
-                expect(obtainedResult).not.toBeNull();
                 expect(obtainedResult).toHaveProperty('data');
                 expect(obtainedResult.data).not.toBeNull();
                 expect(obtainedResult.data).toHaveProperty('login');
