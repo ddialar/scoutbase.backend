@@ -7,11 +7,7 @@ import orm                               from '@orm';
 import { Users }                         from '@entities/Users';
 import { login }                         from '@ports';
 import { AuthenticationBadRequestError } from '@apiErrors'
-import { 
-    NewUserInterface,
-    AuthenticatedUserInterface,
-    ApiErrorInterface
-} from '@interfaces';
+import { NewUserInterface } from '@interfaces';
 import { 
     getManager,
     InsertResult
